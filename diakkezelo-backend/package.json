@@ -1,0 +1,23 @@
+{
+  "name": "diakkezelorendszer",
+  "version": "1.0.0",
+  "description": "Students manager backend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "mariadb",
+    "docker",
+    "fastify"
+  ],
+  "author": "BJP",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "fastify": "^5.0.0",
+    "fastify-mariadb": "^2.0.0",
+    "mariadb": "^3.3.2"
+  }
+}
