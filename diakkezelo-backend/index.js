@@ -2,6 +2,8 @@ const dotenv = require('dotenv').config();
 const fastify = require('fastify')({
   logger: true
 })
+const db = require('./dbconnector');
+db(fastify);
 
 fastify.register(require('./routes'));
 

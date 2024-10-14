@@ -1,17 +1,7 @@
-const fastify = require('fastify')({
-  logger: true
-});
-
-
 async function routes (fastify, options) {
     
     fastify.get('/', async (request, reply) => {
       return { hello: 'world' }
-    });
-    
-    fastify.register(require('fastify-mariadb'), {
-      promise: true,
-      connectionString: `${process.env.MARIADBCONNECTIONSTRING}`
     });
 
     fastify.get('/user', async (req, reply) => {
