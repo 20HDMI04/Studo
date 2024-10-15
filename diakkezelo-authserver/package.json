@@ -1,24 +1,22 @@
 {
-  "name": "diakkezelorendszer",
+  "name": "diakkezelo-authserver",
   "version": "1.0.0",
-  "description": "Students manager backend.",
+  "description": "auth server",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
   "keywords": [
-    "mariadb",
-    "docker",
-    "fastify"
+    "auth",
+    "jsonwebtoken"
   ],
-  "author": "BJP",
+  "author": "John B.",
   "license": "ISC",
   "dependencies": {
     "@fastify/jwt": "^9.0.1",
     "dotenv": "^16.4.5",
     "fastify": "^5.0.0",
-    "fastify-mariadb": "^2.0.0",
-    "mariadb": "^3.3.2"
+    "fastify-mariadb": "^2.0.0"
   }
 }

@@ -30,6 +30,28 @@ async function routes (fastify, options) {
       connection.release();
       return result;
     });
+
+    fastify.get("/protected", async (request, reply) => {
+      try {
+          await request.headers["authorization"];
+          let token = request.headers["authorization"].split(" ");
+          if (token[0] !== "Auth") {
+              reply.code(401).send({ error: "Unauthorized" });
+              throw new Error("Invalid token");
+          }
+          await fastify.jwt.verify(token[1],process.env.JWTSECRET, (err, decoded) => {
+              if (err) {
+                  reply.code(401).send({ error: "Unauthorized" });
+                  throw new Error("Invalid token");
+              }
+          });
+          return { message: "You are authorized" };
+      } catch (err) {
+          console-log(request);
+          reply.code(401).send({ error: "Unauthorized" });
+      }
+    });
+
 }
 
 module.exports = routes;
