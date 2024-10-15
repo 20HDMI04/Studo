@@ -4,7 +4,7 @@ async function routes (fastify, options) {
       return { hello: 'world' }
     });
 
-    fastify.get('/user', async (req, reply) => {
+    fastify.get('/user', async (req, reply, done) => {
       const mariadb = await fastify.mariadb;
       const connection = await mariadb.getConnection();
       const result = await mariadb.query('SELECT * FROM Persons')

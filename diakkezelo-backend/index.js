@@ -4,6 +4,7 @@ const fastify = require('fastify')({
 })
 const db = require('./dbconnector');
 db(fastify);
+
 fastify.register(require("@fastify/jwt"), {
     secret: process.env.JWTSECRET
 })
