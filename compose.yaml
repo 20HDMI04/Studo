@@ -24,6 +24,8 @@ services:
         condition: service_healthy
         restart: true
     image: diakkezelo-backend:latest
+    build: 
+      context: ./diakkezelo-backend
     networks:
       vpcbr:
         ipv4_address: 10.5.0.4
@@ -34,22 +36,39 @@ services:
         condition: service_healthy
         restart: true
     image: diakkezelo-auth:latest
+    build: 
+      context: ./diakkezelo-auth
     ports:
       - "3097:3097"
     networks:
       vpcbr:
         ipv4_address: 10.5.0.7
   
+  frontend:
+    depends_on:
+      - backend
+      - auth
+    image: diakkezelo-frontend:latest
+    build: 
+      context: ./diakkezelo-frontend
+    ports:
+      - "8080:80"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.8
+
   nginx:
     depends_on:
       - backend
       - db
       - auth
+      - frontend
     image: nginx:latest
     container_name: nginx_container
     expose:
       - 3000
       - 80
+      - 3097
     ports:
       - "127.0.0.1:80:80"
       - "3000:3000"
