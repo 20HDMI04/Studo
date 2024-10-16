@@ -18,8 +18,12 @@ async function searchForUser(fastify, user, password) {
 }
 
 async function routes (fastify, options) {
+    fastify.get("/", async (request, reply) => {
+        return { hello: "world" };
+    });
 
     fastify.post("/login", async (request, reply) => {
+        console.log(`Someone try to login: ${request.body}`);
         const { user, password } = request.body;
         if (await searchForUser(fastify, user, password)) {
             const token = fastify.jwt.sign({ user: user });

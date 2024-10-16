@@ -28,10 +28,23 @@ services:
       vpcbr:
         ipv4_address: 10.5.0.4
   
+  auth:
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
+    image: diakkezelo-auth:latest
+    ports:
+      - "3097:3097"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.7
+  
   nginx:
     depends_on:
       - backend
       - db
+      - auth
     image: nginx:latest
     container_name: nginx_container
     expose:
