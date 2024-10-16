@@ -10,7 +10,7 @@ fastify.register(require("@fastify/jwt"), {
 })
 fastify.register(require('./routes'));
 
-fastify.listen({ port: process.env.PORT || 3000 }, (err, address) => {
+fastify.listen({ port: process.env.PORT || 3000, host: "10.5.0.4" }, (err, address) => {
   if (err) {
     fastify.log.error(err)
     process.exit(1)
