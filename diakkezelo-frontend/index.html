@@ -1,13 +1,103 @@
-<!doctype html>
-<html lang="hu">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Studo</title>
-  </head>
-  <body>
-    <h1>It works</h1>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="./css/common.css" />
+    <link rel="stylesheet" type="text/css" href="./css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="./css/SigninStudent.css" />
+
+
+
+
+</head>
+
+<body class="flex-column">
+
+    <main class="signin-student authenticationPage">
+        <!-- Main authentication page container -->
+        <section class="brandSection">
+            <!-- Brand identity and logo area -->
+            <div class="brandWrapper">
+                <p class="brandTitle">Studo</p>
+                <img class="brandLogo" src="./assets/576c414dbc2f9350206c61c8f32efb4b.svg" alt="alt text" />
+            </div>
+        </section>
+
+        <section class="authSection">
+            <!-- User authentication form area -->
+            <div class="authWrapper">
+                <div class="credentialsContainer">
+                    <div class="formWrapper">
+                        <div class="titleContainer">
+                            <p class="mainTitle">Sign in</p>
+                            <p class="subTitle">Still better than KRÉTA</p>
+                        </div>
+                        <div class="credentialsFields" >
+                            <input class="usernameText passwordContainer" type="text" placeholder="Ministry of Education ID number">
+                            <input class="usernameText passwordContainer" type="password" placeholder="Password">
+                            <a class="recoveryLink">Forgot your password?</a>
+                        </div>
+                        <input class="loginBtn" type="button" value="Sign in" id="signin">
+                    </div>
+                    <div class="decorativeContainer">
+                        <div class="artworkPrimary" id="set1">
+                            <div class="artworkPrimaryWrapper">
+                                <div class="overlayPrimary"></div>
+                                <img class="artworkPrimaryImg" src="./assets/fd19cfb4dfb1b2cfa34badc71806e8a6.svg" alt="alt text" />
+                            </div>
+                        </div>
+                        <div class="artworkSecondary" id="set2">
+                            <div class="artworkSecondaryWrapper" >
+                                <div class="overlaySecondary"></div>
+                                <img class="artworkSecondaryImg" src="./assets/5621efa8a65edf95db0af8eb497fab74.svg" alt="alt text" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footerSection">
+            <!-- Page footer with copyright and legal links -->
+            <div class="footerWrapper">
+                <div class="copyrightContainer">
+                    <div class="copyrightWrapper">
+                        <p class="copyrightSymbol">©️</p>
+                        <p class="copyrightYear"> 2024</p>
+                    </div>
+                    <p class="companyTitle">Studo</p>
+                    <img class="companyLogo" src="./assets/8273b3196e13b2c8ca8fff933928ecea.svg" alt="alt text" />
+                </div>
+                <nav class="legalNav">
+                    <a class="privacyLink">Privacy Policy</a>
+                    <a class="copyrightLink">Copyright Policy</a>
+                    <a class="cookieLink">Cookie Policy</a>
+                </nav>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+    <script src="/main.js"></script>
+    <script>
+        document.getElementById("set2").addEventListener("click", function() {
+            document.getElementById("set1").style.backgroundColor = "#dedede";
+            document.getElementById("set2").style.backgroundColor = "#eeeeee";
+            document.getElementById("signin").style.backgroundColor = "#234E38";
+        });
+        document.getElementById("set1").addEventListener("click", function() {
+            document.getElementById("set2").style.backgroundColor = "#dedede";
+            document.getElementById("set1").style.backgroundColor = "#eeeeee";
+            document.getElementById("signin").style.backgroundColor = "#201e43";
+        });
+    </script>
 </html>
