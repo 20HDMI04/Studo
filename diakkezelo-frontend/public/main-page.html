@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/MainPage.css"/>
+</head>
+
+<body class="flex-column">
+
+    <main class="untitled-page mainContainer">
+        <!-- Main content wrapper -->
+        <section class="heroSection">
+            <!-- Hero banner with user profile -->
+            <img class="mainHeroImg" src="/assets/ebc8b1956a5aa31ad54d8194fa5b5fb0.png" alt="alt text" id="logout_btn"/>
+            <article class="userProfileCard">
+                <img class="avatarImg" src="/assets/99251b5cd65ebc3d84a7d8cf4abd43cd.svg" alt="alt text"/>
+                <p class="userName" id="logname">John Doe</p>
+            </article>
+            <img class="bgImg" src="/assets/bfaa5d2da4daed6293a3980fcb5f9b58.png" alt="alt text" />
+        </section>
+
+        <section class="featuresSection">
+            <!-- Features and navigation area -->
+            <article class="greetingCard" id="headerpic">
+                <!-- User greeting card component -->
+                <article class="greetingWrapper">
+                    <article class="greetingContent">
+                        <p class="welcomeMsg">Welcome, <span id="welcomename">John Doe</span>!</p>
+                        <p class="introMsg">Share your knowledge, learn from your teachers. Studo ensures that we learn together, grow together. Discover your grades!</p>
+                    </article>
+                    <button class="gradesBtn">
+                        <!-- TODO -->
+                        <p class="btnLabel">Go to my grades</p>
+                        <img class="arrowIcon" src="/assets/ced79c6bc60a37810575fbdeca05d3cc.svg" alt="alt text" />
+                    </button>
+                </article>
+            </article>
+            <div class="contentLayout">
+                <nav class="sideNav">
+                    <!-- Side navigation menu -->
+                    <p class="navTitle">More Information</p>
+                    <a class="facultyLink">
+                        <img class="facultyIcon" src="/assets/72edfcdeed7f36014c822e8e27961857.svg" alt="alt text" />
+                        <p class="linkText">Teachers</p>
+                    </a>
+                    <a class="scheduleLink">
+                        <img class="scheduleIcon" src="/assets/10b05a6fc14c72a3ff7293baf624ed87.svg" alt="alt text" />
+                        <p class="linkLabel">Timetables</p>
+                    </a>
+                    <a class="accountLink">
+                        <img class="accountIcon" src="/assets/529781b09dc8a07c1e454b9b25ea245f.svg" alt="alt text" />
+                        <p class="linkLabel1">Account Details</p>
+                    </a>
+                </nav>
+                <div class="projectContainer">
+                    <div class="projectWrapper">
+                        <img class="featureImg" src="/assets/52be13cbac5fe3bd80e435a5bece408d.png" alt="alt text" />
+                        <article class="featureContent">
+                            <p class="featureTitle">More on Project Studo</p>
+                            <p class="featureDesc">Studo is an innovative, user-friendly app that helps students and learners learn more effectively. Studo aims to bring together all the essential learning tools on a single platform.</p>
+                            <button class="detailsBtn" id="repobutton">
+                                <!-- TODO -->
+                                <p class="btnLabel1">Read More</p>
+                                <img class="arrowIcon1" src="/assets/90d988a78734715340c305d9b6057690.svg" alt="alt text" />
+                            </button>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footerSection">
+            <!-- Footer with legal links -->
+            <article class="footerContent">
+                <article class="footerWrapper">
+                    <img class="logoImg" src="/assets/ac7271b7afe2329dc18f72f58e08a5ec.png" alt="alt text" />
+                    <article class="legalContainer">
+                        <nav class="legalNav">
+                            <a class="privacyLink">Privacy Policy</a>
+                            <a class="copyrightLink">Copyright Policy</a>
+                            <a class="cookieLink">Cookie Policy</a>
+                        </nav>
+                    </article>
+                </article>
+                <p class="versionInfo">Version: 1.0.1</p>
+            </article>
+            <hr class="separator" size="1" />
+        </section>
+
+    </main>
+    <script type="module" src="/main.js"></script>
+    <script>
+        document.getElementById("repobutton").onclick = function () {
+            location.href = "https://github.com/20HDMI04/Studo";
+        }
+    </script>
+</body>
+</html>

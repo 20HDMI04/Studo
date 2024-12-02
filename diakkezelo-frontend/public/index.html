@@ -41,8 +41,8 @@
                             <p class="subTitle">Still better than KRÉTA</p>
                         </div>
                         <div class="credentialsFields" >
-                            <input class="usernameText passwordContainer" type="text" placeholder="Ministry of Education ID number">
-                            <input class="usernameText passwordContainer" type="password" placeholder="Password">
+                            <input class="usernameText passwordContainer" type="number" placeholder="Om ID" id="address">
+                            <input class="usernameText passwordContainer" type="password" placeholder="Password" id="password">
                             <a class="recoveryLink">Forgot your password?</a>
                         </div>
                         <input class="loginBtn" type="button" value="Sign in" id="signin">
@@ -85,19 +85,6 @@
         </section>
 
     </main>
-
+    <script type="module" src="/main.js"></script>
 </body>
-    <script src="/main.js"></script>
-    <script>
-        document.getElementById("set2").addEventListener("click", function() {
-            document.getElementById("set1").style.backgroundColor = "#dedede";
-            document.getElementById("set2").style.backgroundColor = "#eeeeee";
-            document.getElementById("signin").style.backgroundColor = "#234E38";
-        });
-        document.getElementById("set1").addEventListener("click", function() {
-            document.getElementById("set2").style.backgroundColor = "#dedede";
-            document.getElementById("set1").style.backgroundColor = "#eeeeee";
-            document.getElementById("signin").style.backgroundColor = "#201e43";
-        });
-    </script>
 </html>

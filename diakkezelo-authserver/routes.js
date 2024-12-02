@@ -1,10 +1,14 @@
-const dotenv = require("dotenv").config();
-
-async function searchForUser(fastify, user, password) {
+async function searchForUser(fastify, user, password, mode) {
   try {
       const mariadb = await fastify.mariadb;
       const connection = await mariadb.getConnection();
-      const result = await mariadb.query('SELECT Username, Password FROM mydb.Teachers WHERE Username = ?', [user]);
+      const table = mode === "student" ? "TestStudent" : "TestTeacher";
+      let result;
+      if(table === "TestTeacher") {
+        result = await mariadb.query(`SELECT TeacherId, Password FROM mydb.${table} WHERE TeacherId = ?`, [user]);
+      } else {
+        result = await mariadb.query(`SELECT OmNumber, Password FROM mydb.${table} WHERE OmNumber = ?`, [user]);
+      }
       connection.release();
       let final = await JSON.parse(JSON.stringify(result));
       if (final[0].Password === password) {
@@ -23,18 +27,39 @@ async function routes (fastify, options) {
     });
 
     fastify.post("/login", async (request, reply) => {
-        console.log(`Someone try to login: ${request.body}`);
-        const { user, password } = request.body;
-        if (await searchForUser(fastify, user, password)) {
-            const token = fastify.jwt.sign({ user: user });
+        if (request.body === undefined) reply.code(400).send({ error: "Bad Request" });
+        const data = await request.body;
+        const acc = data.user;
+        const password = data.password;
+        const mode = data.mode;
+        if (await searchForUser(fastify, acc, password, mode)) {
+            const token = await request.server.jwt.sign({user: acc, refresh:false},process.env.JWTSECRETREFRESH ,{expiresIn: '10m' });
             const finalToken = `Auth ${token}`;
-            return { finalToken };
+            const refreshToken = await request.server.jwt.sign({user: acc, refresh:true},process.env.JWTSECRETREFRESH ,{expiresIn: '1d' });
+            const finalRefreshToken = `Refresh ${refreshToken}`;
+            const maindata = {"token": finalToken,"refresh": finalRefreshToken, "mode": mode};
+            return reply.send(maindata);
         } else {
           return { error: "Unauthorized" };
         }
     });
 
-    
+    fastify.post("/refresh", async (request, reply) => {
+        const refreshToken = await request.body.refreshToken;
+        if (refreshToken === undefined) reply.code(400).send({ error: "Bad Request" });
+        if (!refreshToken.startsWith("Refresh ")) return { error: "Unauthorized" };
+        try {
+            await request.jwtVerify();
+            const decoded = await request.server.jwt.verify(refreshToken.split(" ")[1]);
+            const token = await request.server.jwt.sign({user: decoded.user},process.env.JWTSECRET ,{expiresIn: '10m' });
+            const finalToken = `Auth ${token}`;
+            const maindata = {"token": finalToken};
+            return reply.send(maindata);
+        } catch (error) {
+          console.log(error);
+          return { error: "Unauthorized" };
+        }
+    });
 }
 
 
