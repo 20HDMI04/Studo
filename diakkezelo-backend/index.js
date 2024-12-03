@@ -38,18 +38,21 @@ async function init() {
 			
 		},
     verify: { extractToken: (request) => {
-      if (!request.headers.authorization) {
-        return null
-      }
-      if (!request.headers.authorization.startsWith("Auth ")) {
-        return null
-      }
-      return request.headers.authorization.split(" ")[1]
-    } },
+			if (!request.headers.authorization) {
+			  return null
+			}
+			if (request.headers.authorization.startsWith("Auth ")) {
+				return request.headers.authorization.split(" ")[1];
+			} else if (request.headers.authorization.startsWith("Refresh ")) {
+				return request.headers.authorization.split(" ")[1];
+			} else {
+				return null;
+			}
+		  } },
   })
   await fastify.register(require('./routes'));
 
-  fastify.listen({ port: process.env.PORT || 3000/*, host: "10.5.0.4"*/ }, (err, address) => {
+  fastify.listen({ port: process.env.PORT || 3000, host: "10.5.0.4" }, (err, address) => {
     if (err) {
       fastify.log.error(err)
       process.exit(1)

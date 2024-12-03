@@ -6,7 +6,9 @@ export async function mainPageHandler() {
 	let res;
 	let response1;
 	try {
-		const request = new Request("http://localhost:3000/mainpage-resource", {
+        //real http://127.0.0.1:80/resource/v1/mainpage-resource
+        //testing http://localhost:3000/mainpage-resource
+		const request = new Request("http://127.0.0.1:80/resource/v1/mainpage-resource", {
 			headers: {
 				"Content-Type": "application/json",
 				authorization: localStorage.getItem("token"),
@@ -14,7 +16,9 @@ export async function mainPageHandler() {
 		});
 		res = await fetch(request);
 		if ((await res.status) == 401) {
-			const requestref = new Request("http://localhost:3097/refresh", {
+            //real http://127.0.0.1:80/auth/v1/refresh
+            //testing http://127.0.0.1:3097/refresh
+			const requestref = new Request("http://127.0.0.1:80/auth/v1/refresh", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -31,8 +35,10 @@ export async function mainPageHandler() {
 			}
 			localStorage.removeItem("token");
 			localStorage.setItem("token", responseRefresh.token);
+            //real http://127.0.0.1:80/resource/v1/mainpage-resource
+            //testing http://localhost:3000/mainpage-resource
 			const requestretry = new Request(
-				"http://localhost:3000/mainpage-resource",
+				"http://127.0.0.1:80/resource/v1/mainpage-resource",
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -53,6 +59,10 @@ export async function mainPageHandler() {
         console.log(response1);
 		welcomename.textContent = await response1.data.Teacher_Name;
 		logname.textContent = await response1.data.Teacher_Name;
+        if(response1.data.Teacher_Name == null || response1.data.Teacher_Name == undefined) {
+            welcomename.textContent = await response1.data.Student_Name;
+            logname.textContent = await response1.data.Student_Name;
+        }
 		logout_btn.addEventListener("click", async () => {
 			localStorage.removeItem("token");
 			localStorage.removeItem("refresh");

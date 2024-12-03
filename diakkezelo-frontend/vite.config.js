@@ -14,7 +14,7 @@ export default defineConfig({
   root:"./public",
   server: {
         port: 5173,
-        //host: "10.5.0.8",
+        host: "10.5.0.8",
     }
     
 });

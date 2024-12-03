@@ -34,8 +34,9 @@ async function logIn() {
             return;
         }
     }
-    //http://127.0.0.1:80/auth/v1/login
-    const request = new Request("http://127.0.0.1:3097/login", {
+    //real http://127.0.0.1:80/auth/v1/login
+    //testing http://127.0.0.1:3097/login
+    const request = new Request("http://127.0.0.1:80/auth/v1/login", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -52,7 +53,7 @@ async function logIn() {
         if (response1.mode === mode.STUDENT) {
             window.location.href = "/main-page";
         } else if (response1.mode === mode.TEACHER) {
-            //window.location.href = "/main-page-teacher";
+            window.location.href = "/main-page-teacher";
         } else {
             console.log("You are unauthorized to login");
         }

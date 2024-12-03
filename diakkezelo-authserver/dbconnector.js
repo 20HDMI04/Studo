@@ -1,7 +1,7 @@
 function conncectdb(fastify) {
     fastify.register(require('fastify-mariadb'), {
       promise: true,
-      connectionString: `${process.env.MARIADBCONNECTIONSTRINGTESTING}`
+      connectionString: `${process.env.MARIADBCONNECTIONSTRING}`
     });
 } 
 

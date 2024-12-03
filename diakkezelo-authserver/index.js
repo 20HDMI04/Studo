@@ -54,7 +54,7 @@ async function init() {
 	await fastify.register(require("./routes"));
 
 	fastify.listen(
-		{ port: process.env.PORT || 3097/*, host: "10.5.0.7"*/ },
+		{ port: process.env.PORT || 3097, host: "10.5.0.7" },
 		(err, address) => {
 			if (err) {
 				fastify.log.error(err);
