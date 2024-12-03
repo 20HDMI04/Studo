@@ -46,11 +46,16 @@ async function logIn() {
       
     let res = await fetch(request);
     let response1 = await res.json();
-    console.log(response1);
     if(response1.error == null || response1.error == undefined) {
         localStorage.setItem("token", response1.token);
         localStorage.setItem("refresh", response1.refresh);
-        window.location.href = "/main-page";
+        if (response1.mode === mode.STUDENT) {
+            window.location.href = "/main-page";
+        } else if (response1.mode === mode.TEACHER) {
+            //window.location.href = "/main-page-teacher";
+        } else {
+            console.log("You are unauthorized to login");
+        }
         }
     }
     init();

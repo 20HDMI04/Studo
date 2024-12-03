@@ -6,6 +6,7 @@ export default defineConfig({
       input: {
         index: './public/index.html',
         main: './public/main-page.html',
+        teacher: './public/main-page-teacher.html',
         policy: './public/privacy-policy.html',
       }
     }

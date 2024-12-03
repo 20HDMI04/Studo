@@ -33,9 +33,9 @@ async function routes (fastify, options) {
         const password = data.password;
         const mode = data.mode;
         if (await searchForUser(fastify, acc, password, mode)) {
-            const token = await request.server.jwt.sign({user: acc, refresh:false},process.env.JWTSECRETREFRESH ,{expiresIn: '10m' });
+            const token = await request.server.jwt.sign({user: acc, refresh:false},{expiresIn: '10m' });
             const finalToken = `Auth ${token}`;
-            const refreshToken = await request.server.jwt.sign({user: acc, refresh:true},process.env.JWTSECRETREFRESH ,{expiresIn: '1d' });
+            const refreshToken = await request.server.jwt.sign({user: acc, refresh:true},{expiresIn: '1d' });
             const finalRefreshToken = `Refresh ${refreshToken}`;
             const maindata = {"token": finalToken,"refresh": finalRefreshToken, "mode": mode};
             return reply.send(maindata);
@@ -51,7 +51,7 @@ async function routes (fastify, options) {
         try {
             await request.jwtVerify();
             const decoded = await request.server.jwt.verify(refreshToken.split(" ")[1]);
-            const token = await request.server.jwt.sign({user: decoded.user},process.env.JWTSECRET ,{expiresIn: '10m' });
+            const token = await request.server.jwt.sign({user: decoded.user, refresh:false} ,{expiresIn: '10m' });
             const finalToken = `Auth ${token}`;
             const maindata = {"token": finalToken};
             return reply.send(maindata);

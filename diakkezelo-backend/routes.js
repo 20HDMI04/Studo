@@ -56,9 +56,15 @@ async function routes(fastify, options) {
 		let user = decoded.user;
 		const mariadb = await fastify.mariadb;
 		const connection = await mariadb.getConnection();
-		const result = await mariadb.query("SELECT OmNumber, Student_Name FROM mydb.TestStudent WHERE OmNumber = ?",[user]);
-		connection.release();
-		return reply.send({ data: result[0] });
+		if (user.includes("@")) {
+			const result = await mariadb.query("SELECT TeacherId, Teacher_Name FROM mydb.TestTeacher WHERE TeacherId = ?",[user]);
+			connection.release();
+			return reply.send({ data: result[0] });
+		} else {
+			const result = await mariadb.query("SELECT OmNumber, Student_Name FROM mydb.TestStudent WHERE OmNumber = ?",[user]);
+			connection.release();
+			return reply.send({ data: result[0] });
+		}
 	});
 }
 

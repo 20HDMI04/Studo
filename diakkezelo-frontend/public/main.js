@@ -4,7 +4,7 @@ import { mainPageHandler } from './main-p.js';
 document.addEventListener('DOMContentLoaded', async ()=>{
     if (window.location.pathname === "/") {
         LoginInit();
-    } else if (window.location.pathname === "/main-page") {
+    } else if (window.location.pathname === "/main-page" || window.location.pathname === "/main-page-teacher") {
         if (localStorage.getItem("token") === null || localStorage.getItem("token") === undefined) {
             window.location.href = "/";
         }
