@@ -6,4 +6,4 @@ Here is the url for it. Let's try our initial web design with Figma prototyping.
 
 > [!NOTE]
 > For usability I shortened the url.
-> https://tinyurl.com/2xjywyrm
+> https://tinyurl.com/ycy7y9xc
